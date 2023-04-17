@@ -1,6 +1,9 @@
+package server;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import utils.ContextUtils;
 import utils.RequestUtils;
 
 import java.io.FileNotFoundException;
@@ -34,7 +37,7 @@ public class Server {
     public Server(InetSocketAddress socketAddress, int backlog) {
         try {
             httpServer = HttpServer.create(socketAddress, backlog);
-            httpServer.createContext("/", new RootHandler());
+            //httpServer.createContext("/", new RootHandler());
 
             System.out.println("Server initialized at " + socketAddress.toString());
             httpServer.start();
@@ -44,6 +47,9 @@ public class Server {
         }
     }
 
+    public void loadNormalContexts() {
+        ContextUtils.recursiveContextInit(httpServer);
+    }
 
 }
 
