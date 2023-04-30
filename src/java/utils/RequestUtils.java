@@ -15,9 +15,6 @@ public class RequestUtils {
     public static void ServeFile (HttpExchange he, String filepath) {
         filepath = "html/" + filepath;
 
-        if(filepath.endsWith("/")) {
-            filepath += "index.html";
-        }
         String response = null;
         try {
             response = Files.readString(Paths.get(filepath), StandardCharsets.UTF_8);
