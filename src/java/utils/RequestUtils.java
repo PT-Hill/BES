@@ -31,4 +31,10 @@ public class RequestUtils {
             else System.err.println(e.toString());
         }
     }
+
+
+    //Starts at 1 as I like to think of it as a binary value, almost a boolean (0 or 1)
+    public static String fetchPostParameters(String request, int parameterNumber, int keyOrValue) {
+        return request.split("&")[parameterNumber-1].split("=")[keyOrValue-1];
+    }
 }

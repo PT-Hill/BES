@@ -57,5 +57,13 @@ public class Main {
             new loginUser("loginUser", "loginUser"),
             new registerUser("registerUser", "registerUser")
         });
+
+        /*try {
+            //UserTable.Insert(00220204, "John", "Doe", "johndoe@email.com", "johnnyboy");
+            //UserTable.Insert(0044520204, "John", "Doe", "johndoe@email.com", "johnnyboy");
+            //UserTable.Insert(10020204, "John", "Doe", "johndoe@email.com", "johnnyboy");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }*/
     }
 }
