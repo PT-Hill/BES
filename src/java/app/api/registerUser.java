@@ -7,6 +7,7 @@ import utils.RequestUtils;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class registerUser extends API {
     public registerUser(String name, String contextUrl) {
@@ -19,15 +20,8 @@ public class registerUser extends API {
             String request = new String(exchange.getRequestBody().readAllBytes());
             System.out.println(request);
             try {
-                System.out.println("Param 1 Left: " + RequestUtils.fetchPostParameters(request, 1, 1));
-                System.out.println(RequestUtils.fetchPostParameters(request, 1, 2));
-
-                UserTable.Insert(Integer.parseInt(RequestUtils.fetchPostParameters(request, 1, 2)),
-                                 RequestUtils.fetchPostParameters(request, 2, 2),
-                                 RequestUtils.fetchPostParameters(request, 3, 2),
-                                 RequestUtils.fetchPostParameters(request, 4, 2),
-                                 RequestUtils.fetchPostParameters(request, 5, 2)
-                );
+                Map<String,String> post = RequestUtils.fetchPostParameters(request);
+                UserTable.Insert(Integer.parseInt(post.get("user_id")), post.get("first_name"), post.get("last_name"), post.get("email"), post.get("password"));
 
                 String response = "User registered!";
                 exchange.sendResponseHeaders(200, response.length());

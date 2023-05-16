@@ -8,6 +8,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class RequestUtils {
     //All tedious methods relating to serving, fetching, and requesting pages
@@ -34,7 +38,14 @@ public class RequestUtils {
 
 
     //Starts at 1 as I like to think of it as a binary value, almost a boolean (0 or 1)
-    public static String fetchPostParameters(String request, int parameterNumber, int keyOrValue) {
-        return request.split("&")[parameterNumber-1].split("=")[keyOrValue-1];
+    public static Map<String, String> fetchPostParameters(String request) {
+        Map<String, String> parameters = new HashMap<String, String>();
+        for (String parameter : request.split("&"))
+        {
+            String[] pair  = parameter.split("=");
+            parameters.put(pair[0], pair[1]);
+        }
+
+        return parameters;
     }
 }
