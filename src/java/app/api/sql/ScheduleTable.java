@@ -6,8 +6,7 @@ import java.sql.SQLException;
 
 public class ScheduleTable {
 
-    public static String scheduleTableInit = "CREATE TABLE IF NOT EXISTS schedules (`schedule_id` INT(15) NOT NULL,`first_name` VARCHAR(25) NOT NULL,`last_name` VARCHAR(50) NOT NULL,`email` VARCHAR(320) NOT NULL,`password` VARCHAR(50) NOT NULL,`time_registered` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,`time_since_login` TIMESTAMP NULL,PRIMARY KEY (`user_id`))";
-
+    public static String scheduleTableInit = "CREATE TABLE IF NOT EXISTS schedules (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, start_date DATE NOT NULL, end_date DATE NOT NULL, start_time TIME NOT NULL, end_time TIME NOT NULL, eventholder_name VARCHAR(50) NULL, description VARCHAR(300) NULL)";
     public static void Initialize(Connection conn) {
         try(PreparedStatement statement = conn.prepareStatement(scheduleTableInit)) {
             statement.execute();

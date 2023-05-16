@@ -1,5 +1,6 @@
 package server;
 
+import app.api.API;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -49,6 +50,12 @@ public class Server {
 
     public void loadNormalContexts() {
         ContextUtils.recursiveContextInit(httpServer);
+    }
+
+    public void loadApiContexts(API[] apis) {
+        for(API api : apis) {
+            httpServer.createContext(api.getContextUrl(), api);
+        }
     }
 
 }
